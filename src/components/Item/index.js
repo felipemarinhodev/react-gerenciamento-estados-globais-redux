@@ -2,6 +2,7 @@ import { memo } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { FaCartPlus } from 'react-icons/fa'
 import { useDispatch } from 'react-redux';
+import { mudarCarrinho } from 'store/reducers/carrinho';
 
 import { mudarFavorito } from 'store/reducers/itens';
 import styles from './Item.module.scss';
@@ -25,6 +26,10 @@ function Item(props) {
 
 	function resolverFavorito() {
 		dispatch(mudarFavorito(id));
+	}
+
+	function resolverCarrinho() {
+		dispatch(mudarCarrinho(id))
 	}
 
 	return (
@@ -59,6 +64,7 @@ function Item(props) {
 							{...iconePros}
 							color={true ? '#1875e8' : iconePros.color}
 							className={styles['item-acao']}
+							onClick={resolverCarrinho}
 						/>
 					</div>
 				</div>
