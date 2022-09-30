@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { FaCartPlus } from 'react-icons/fa'
 import { useDispatch } from 'react-redux';
@@ -10,7 +11,7 @@ const iconePros = {
 	color: '#041833'
 }
 
-export default function Item(props) {
+function Item(props) {
 	const dispatch = useDispatch();
 
 	const {
@@ -65,3 +66,5 @@ export default function Item(props) {
 		</div>
 	)
 }
+
+export default memo(Item)
