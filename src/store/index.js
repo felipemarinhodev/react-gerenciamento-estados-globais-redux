@@ -7,7 +7,7 @@ const store = configureStore({
 	reducer: {
 		categorias: categoriasSlice,
 		itens: itensSlice,
-		carinho: carrinhoSlice,
+		carrinho: carrinhoSlice,
 	}
 })
 
