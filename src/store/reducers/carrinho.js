@@ -28,10 +28,15 @@ const carrinhoSlice = createSlice({
 				}
 
 			})
-		}
+		},
+		resetCarrinho: () => initialState
 	}
 })
 
-export const { mudarCarrinho, mudarQuantidade } = carrinhoSlice.actions;
+export const {
+	mudarCarrinho,
+	mudarQuantidade,
+	resetCarrinho
+} = carrinhoSlice.actions;
 
 export default carrinhoSlice.reducer;
