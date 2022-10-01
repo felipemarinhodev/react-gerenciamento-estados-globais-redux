@@ -25,7 +25,7 @@ export default function Carrinho() {
 			/>
 			<div className={styles.carrinho}>
 				{carrinho.length > 0
-					? carrinho.map(item => <Item key={item.id} {...item} />)
+					? carrinho.map(item => <Item key={item.id} {...item} carrinho />)
 					: <p>O seu carrinho está vazio.</p>
 				}
 				<div className={styles.total}>

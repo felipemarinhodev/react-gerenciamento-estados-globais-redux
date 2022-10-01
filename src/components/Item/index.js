@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { memo } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { FaCartPlus } from 'react-icons/fa'
@@ -19,7 +20,8 @@ function Item(props) {
 		preco,
 		descricao,
 		favorito,
-		id
+		id,
+		carrinho = false
 	} = props;
 
 	const dispatch = useDispatch();
@@ -38,7 +40,9 @@ function Item(props) {
 	}
 
 	return (
-		<div className={styles.item}>
+		<div className={classNames(styles.item, {
+			[styles.itemNoCarrinho]: carrinho
+		})}>
 			<div className={styles["item-imagem"]}>
 				<img src={foto} alt={titulo} />
 			</div>
