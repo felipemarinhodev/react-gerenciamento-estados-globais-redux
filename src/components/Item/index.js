@@ -1,9 +1,14 @@
 import classNames from 'classnames';
 import { memo } from 'react';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import {
+	AiFillHeart,
+	AiFillMinusCircle,
+	AiOutlineHeart,
+	AiFillPlusCircle
+} from 'react-icons/ai'
 import { FaCartPlus } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux';
-import { mudarCarrinho } from 'store/reducers/carrinho';
+import { mudarCarrinho, mudarQuantidade } from 'store/reducers/carrinho';
 
 import { mudarFavorito } from 'store/reducers/itens';
 import styles from './Item.module.scss';
@@ -11,6 +16,11 @@ import styles from './Item.module.scss';
 const iconePros = {
 	size: 24,
 	color: '#041833'
+}
+
+const quantidadePros = {
+	size: 32,
+	color: '#1875e8'
 }
 
 function Item(props) {
@@ -21,7 +31,8 @@ function Item(props) {
 		descricao,
 		favorito,
 		id,
-		carrinho = false
+		carrinho = false,
+		quantidade
 	} = props;
 
 	const dispatch = useDispatch();
@@ -69,12 +80,32 @@ function Item(props) {
 								onClick={resolverFavorito}
 							/>
 						}
-						<FaCartPlus
-							{...iconePros}
-							color={estaNoCarrinho ? '#1875e8' : iconePros.color}
-							className={styles['item-acao']}
-							onClick={resolverCarrinho}
-						/>
+						{carrinho
+							? (
+								<div className={styles.quantidade}>
+									Quantidade:
+									<AiFillMinusCircle
+										{...quantidadePros}
+										onClick={() => {
+											if (quantidade >= 1) {
+												dispatch(mudarQuantidade({ id, quantidade: -1 }))
+											}
+										}}
+									/>
+									<span>{String(quantidade || 0).padStart(2, '0')}</span>
+									<AiFillPlusCircle {...quantidadePros}
+										onClick={() =>
+											dispatch(mudarQuantidade({ id, quantidade: 1 }))
+										}
+									/>
+								</div>
+							)
+							: (<FaCartPlus
+								{...iconePros}
+								color={estaNoCarrinho ? '#1875e8' : iconePros.color}
+								className={styles['item-acao']}
+								onClick={resolverCarrinho}
+							/>)}
 					</div>
 				</div>
 			</div>
