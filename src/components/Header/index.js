@@ -1,8 +1,9 @@
+import { memo } from 'react';
 import styles from './Header.module.scss';
 import TituloComImagem from './TituloComImagem';
 import TituloSemImagem from './TituloSemImagem';
 
-export default function Header({
+function Header({
 	titulo,
 	descricao,
 	className = '',
@@ -28,3 +29,5 @@ export default function Header({
 		</header>
 	)
 }
+
+export default memo(Header);
